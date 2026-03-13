@@ -10,12 +10,7 @@
 <title>Budget Courses</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg:#f5f7f2;--surface:#ffffff;--surface2:#f0f2ed;--border:#e8ebe4;
-    --text:#1a1f16;--muted:#8a9180;--green:#5a9e3a;--green-light:#e8f5e0;
-    --green-mid:#a8d48a;--orange:#e07d2a;--orange-light:#fef3e8;
-    --red:#d94f3d;--red-light:#fdecea;--blue:#3a7bd5;--radius:20px;--radius-sm:14px;
-  }
+  :root{--bg:#f5f7f2;--surface:#fff;--surface2:#f0f2ed;--border:#e8ebe4;--text:#1a1f16;--muted:#8a9180;--green:#5a9e3a;--green-light:#e8f5e0;--green-mid:#a8d48a;--orange:#e07d2a;--orange-light:#fef3e8;--red:#d94f3d;--red-light:#fdecea;--blue:#3a7bd5;--radius:20px;--radius-sm:14px}
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:calc(80px + env(safe-area-inset-bottom));overflow-x:hidden}
   .app{max-width:430px;margin:0 auto;padding:0 18px}
@@ -27,36 +22,30 @@
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
   .header-month{font-size:30px;font-weight:800;letter-spacing:-1px}
   .header-sub{font-size:12px;color:var(--muted);margin-top:3px;font-weight:500}
-
-  /* WEEK HERO CARD */
   .week-hero{border-radius:var(--radius);padding:22px;margin-bottom:12px;position:relative;overflow:hidden;transition:background .3s}
-  .week-hero::before{content:'';position:absolute;top:-40px;right:-40px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,0.25)}
+  .week-hero::before{content:'';position:absolute;top:-40px;right:-40px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.25)}
   .week-hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
   .week-hero-label{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;opacity:.8}
-  .week-hero-dates{font-size:13px;font-weight:600;opacity:.7;margin-top:2px}
-  .week-available{font-size:48px;font-weight:800;letter-spacing:-2px;line-height:1}
+  .week-hero-dates{font-size:12px;font-weight:600;opacity:.7;margin-top:4px}
+  .week-available{font-size:46px;font-weight:800;letter-spacing:-2px;line-height:1}
   .week-available-lbl{font-size:13px;font-weight:600;opacity:.7;margin-top:4px}
   .ring-wrap{position:relative;width:82px;height:82px;flex-shrink:0}
   .ring-wrap svg{transform:rotate(-90deg)}
-  .ring-bg{fill:none;stroke:rgba(255,255,255,0.3);stroke-width:7}
+  .ring-bg{fill:none;stroke:rgba(255,255,255,.3);stroke-width:7}
   .ring-fill{fill:none;stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset .8s cubic-bezier(.16,1,.3,1),stroke .3s}
   .ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
   .ring-pct{font-size:15px;font-weight:800}
   .ring-lbl{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;opacity:.7}
   .week-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-  .week-stat{background:rgba(255,255,255,0.6);border-radius:12px;padding:10px 10px}
+  .week-stat{background:rgba(255,255,255,.6);border-radius:12px;padding:10px}
   .week-stat-val{font-size:14px;font-weight:800}
   .week-stat-lbl{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;opacity:.7}
-
-  /* CARRY OVER BANNER */
   .carry-banner{border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:12px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600}
-  .carry-pos{background:#e8f5e0;color:#5a9e3a}
-  .carry-neg{background:#fdecea;color:#d94f3d}
-  .carry-zero{background:#f0f2ed;color:#8a9180}
+  .carry-pos{background:var(--green-light);color:var(--green)}
+  .carry-neg{background:var(--red-light);color:var(--red)}
+  .carry-zero{background:var(--surface2);color:var(--muted)}
   .carry-icon{font-size:20px;flex-shrink:0}
   .carry-sub{font-size:11px;font-weight:500;opacity:.75;margin-top:2px}
-
-  /* MONTH CARD */
   .month-card{background:var(--surface);border-radius:var(--radius-sm);padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
   .month-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
   .month-card-title{font-size:14px;font-weight:700}
@@ -68,16 +57,6 @@
   .month-stat{text-align:center}
   .month-stat-val{font-size:14px;font-weight:800}
   .month-stat-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
-
-  /* ALERT */
-  .alert-card{border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:12px;display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600}
-  .alert-ok{background:var(--green-light);color:var(--green)}
-  .alert-warning{background:var(--orange-light);color:var(--orange)}
-  .alert-danger{background:var(--red-light);color:var(--red)}
-  .alert-icon-wrap{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;background:rgba(255,255,255,0.6)}
-  .alert-sub{font-size:11px;font-weight:500;opacity:.75;margin-top:2px}
-
-  /* FORM */
   .form-card{background:var(--surface);border-radius:var(--radius);padding:20px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
   .form-lbl{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:12px}
   .amount-row{display:flex;gap:10px;margin-bottom:12px}
@@ -93,8 +72,6 @@
   .sel-wrap::after{content:'v';position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:11px}
   select,input[type=date]{width:100%;background:var(--surface2);border:2px solid var(--border);border-radius:12px;padding:11px 14px;font-size:14px;font-weight:600;color:var(--text);outline:none;-webkit-appearance:none;font-family:'Inter',sans-serif;transition:border-color .2s}
   select:focus,input[type=date]:focus{border-color:var(--green)}
-
-  /* HISTORY */
   .sec-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
   .sec-title{font-size:17px;font-weight:700}
   .clear-btn{font-size:12px;color:var(--red);background:none;border:none;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
@@ -104,26 +81,26 @@
   .h-icon{width:42px;height:42px;border-radius:12px;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0}
   .h-shop{font-size:14px;font-weight:700}
   .h-date{font-size:11px;color:var(--muted);font-weight:500;margin-top:2px}
+  .h-week-tag{font-size:10px;font-weight:700;background:var(--green-light);color:var(--green);padding:2px 6px;border-radius:6px;margin-left:6px}
   .h-amt{font-size:15px;font-weight:800;color:var(--red);flex-shrink:0}
   .del-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:15px;padding:4px;flex-shrink:0}
   .empty{text-align:center;padding:36px 16px;color:var(--muted);font-size:13px;background:var(--surface);border-radius:var(--radius);box-shadow:0 1px 4px rgba(0,0,0,.05)}
   .empty-icon{font-size:40px;display:block;margin-bottom:10px}
-
-  /* WEEKLY TIMELINE */
-  .week-timeline{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
-  .wt-item{background:var(--surface);border-radius:var(--radius-sm);padding:14px 16px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  .week-timeline{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+  .wt-item{background:var(--surface);border-radius:var(--radius-sm);padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
   .wt-item.current{border:2px solid var(--green)}
-  .wt-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-  .wt-label{font-size:13px;font-weight:700}
-  .wt-current-badge{background:var(--green-light);color:var(--green);font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px}
-  .wt-amounts{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:6px}
-  .wt-bar-bg{height:5px;background:var(--surface2);border-radius:3px;overflow:hidden}
+  .wt-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+  .wt-label{font-size:14px;font-weight:700}
+  .wt-dates{font-size:11px;color:var(--muted);font-weight:500;margin-bottom:10px}
+  .wt-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px}
+  .wt-badge.cur{background:var(--green-light);color:var(--green)}
+  .wt-badge.fut{background:var(--surface2);color:var(--muted)}
+  .wt-budget-row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:6px}
+  .wt-bar-bg{height:6px;background:var(--surface2);border-radius:3px;overflow:hidden;margin-bottom:10px}
   .wt-bar-fill{height:100%;border-radius:3px;transition:width .5s}
-  .wt-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
-  .wt-spent{font-size:13px;font-weight:700;color:var(--red)}
-  .wt-balance{font-size:13px;font-weight:700}
-
-  /* STATS */
+  .wt-bottom{display:flex;justify-content:space-between;align-items:center}
+  .wt-spent{font-size:13px;font-weight:700}
+  .wt-balance{font-size:15px;font-weight:800}
   .stats-g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
   .stat-lg{background:var(--surface);border-radius:var(--radius-sm);padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
   .stat-lg-val{font-size:22px;font-weight:800}
@@ -136,8 +113,6 @@
   .shop-bar-w{flex:1;height:4px;background:var(--border);border-radius:2px;margin:0 10px;overflow:hidden}
   .shop-bar-f{height:100%;background:var(--green-mid);border-radius:2px}
   .shop-val{font-size:13px;font-weight:700;color:var(--muted)}
-
-  /* SETTINGS */
   .set-card{background:var(--surface);border-radius:var(--radius);padding:20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
   .set-lbl{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:12px;display:block}
   .set-row{display:flex;gap:10px;align-items:center}
@@ -147,18 +122,13 @@
   .bud-inp:focus{border-color:var(--green)}
   .save-btn{background:var(--green);color:white;border:none;border-radius:12px;padding:12px 18px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 3px 10px rgba(90,158,58,.3);white-space:nowrap}
   .danger-btn{width:100%;background:var(--red-light);color:var(--red);border:none;border-radius:12px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
-
-  /* NAV */
   .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(255,255,255,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;padding:8px 16px;padding-bottom:calc(8px + env(safe-area-inset-bottom));z-index:100;box-shadow:0 -4px 20px rgba(0,0,0,.06)}
   .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:6px 0;border-radius:10px;transition:background .15s}
   .nav-btn.active{background:var(--green-light)}
   .nav-icon{font-size:20px;color:var(--muted)}
   .nav-lbl{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.3px}
   .nav-btn.active .nav-icon,.nav-btn.active .nav-lbl{color:var(--green)}
-  .page{display:none;padding-bottom:20px}
-  .page.active{display:block}
-
-  /* MODAL */
+  .page{display:none;padding-bottom:20px}.page.active{display:block}
   .modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:flex-end;justify-content:center;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom))}
   .modal-overlay.hidden{display:none}
   .modal-box{background:var(--surface);border-radius:24px;padding:28px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.15)}
@@ -173,7 +143,6 @@
   @keyframes ldg{from{left:-50%}to{left:100%}}
   .spacer{height:24px}
   input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
-  .divider{height:1px;background:var(--border);margin:12px 0}
 </style>
 </head>
 <body>
@@ -191,11 +160,10 @@
       <div class="header-sub" id="hdr-sub">--</div>
     </div>
 
-    <!-- SEMAINE EN COURS -->
     <div class="week-hero" id="week-hero" style="background:var(--green-light)">
       <div class="week-hero-top">
-        <div>
-          <div class="week-hero-label" style="color:var(--green)">&#128197; Semaine en cours</div>
+        <div style="flex:1">
+          <div class="week-hero-label" id="week-hero-label" style="color:var(--green)">&#128197; Semaine en cours</div>
           <div class="week-available" id="week-available" style="color:var(--text)">--</div>
           <div class="week-available-lbl" id="week-available-lbl" style="color:var(--muted)">disponibles cette semaine</div>
           <div class="week-hero-dates" id="week-dates" style="color:var(--muted)">--</div>
@@ -214,43 +182,41 @@
       <div class="week-stats">
         <div class="week-stat">
           <div class="week-stat-val" id="ws-budget" style="color:var(--text)">--</div>
-          <div class="week-stat-lbl" style="color:var(--muted)">Budget sem.</div>
+          <div class="week-stat-lbl" style="color:var(--muted)">Disponible</div>
         </div>
         <div class="week-stat">
-          <div class="week-stat-val" id="ws-spent" style="color:var(--red)">0 €</div>
+          <div class="week-stat-val" id="ws-spent" style="color:var(--red)">--</div>
           <div class="week-stat-lbl" style="color:var(--muted)">Depense</div>
         </div>
         <div class="week-stat">
-          <div class="week-stat-val" id="ws-carry" style="color:var(--muted)">0 €</div>
+          <div class="week-stat-val" id="ws-carry" style="color:var(--muted)">--</div>
           <div class="week-stat-lbl" style="color:var(--muted)">Report</div>
         </div>
       </div>
     </div>
 
-    <!-- REPORT BANNER -->
     <div class="carry-banner carry-zero" id="carry-banner">
-      <span class="carry-icon">&#8594;</span>
+      <span class="carry-icon" id="carry-icon">&#8594;</span>
       <div>
-        <div id="carry-msg">Pas encore de report</div>
-        <div class="carry-sub" id="carry-sub">Le solde des semaines precedentes apparaitra ici</div>
+        <div id="carry-msg">Premiere semaine</div>
+        <div class="carry-sub" id="carry-sub">Budget de base : 165 &#8364;</div>
       </div>
     </div>
 
-    <!-- MOIS -->
     <div class="month-card">
       <div class="month-card-top">
         <div class="month-card-title">Budget du mois</div>
-        <div class="month-card-budget" id="month-budget-lbl">-- €</div>
+        <div class="month-card-budget" id="month-budget-lbl">--</div>
       </div>
       <div class="month-pbar-bg">
         <div class="month-pbar-fill" id="month-pbar" style="width:0%;background:var(--green)"></div>
       </div>
       <div class="month-pbar-labels">
-        <span>0 €</span><span id="month-pct">0%</span><span id="month-max">--</span>
+        <span>0 &#8364;</span><span id="month-pct-lbl">0%</span><span id="month-max">--</span>
       </div>
       <div class="month-stats">
         <div class="month-stat">
-          <div class="month-stat-val" id="ms-spent" style="color:var(--red)">0 €</div>
+          <div class="month-stat-val" id="ms-spent" style="color:var(--red)">--</div>
           <div class="month-stat-lbl">Depense</div>
         </div>
         <div class="month-stat">
@@ -259,12 +225,11 @@
         </div>
         <div class="month-stat">
           <div class="month-stat-val" id="ms-weeks" style="color:var(--blue)">--</div>
-          <div class="month-stat-lbl">Semaines</div>
+          <div class="month-stat-lbl">Vendredis</div>
         </div>
       </div>
     </div>
 
-    <!-- FORM -->
     <div class="form-card">
       <div class="form-lbl">Nouvel achat</div>
       <div class="amount-row">
@@ -288,9 +253,8 @@
       </div>
     </div>
 
-    <!-- HISTORY -->
     <div class="sec-hdr">
-      <div class="sec-title">Historique</div>
+      <div class="sec-title">Historique du mois</div>
       <button class="clear-btn" onclick="clearMonth()">Tout effacer</button>
     </div>
     <div class="h-list" id="hist-list"></div>
@@ -301,8 +265,8 @@
   <div class="page" id="page-weeks">
     <div class="header">
       <div class="header-top"><div class="app-name">Semaines</div></div>
-      <div class="header-month" id="weeks-month">Ce mois</div>
-      <div class="header-sub" id="weeks-sub">Detail par semaine avec reports</div>
+      <div class="header-month" id="weeks-month">--</div>
+      <div class="header-sub" id="weeks-sub">Budget + report par semaine</div>
     </div>
     <div class="week-timeline" id="week-timeline"></div>
     <div class="spacer"></div>
@@ -312,7 +276,7 @@
   <div class="page" id="page-stats">
     <div class="header">
       <div class="header-top"><div class="app-name">Statistiques</div></div>
-      <div class="header-month" id="stats-month">Ce mois</div>
+      <div class="header-month" id="stats-month">--</div>
     </div>
     <div class="stats-g2" id="stats-grid"></div>
     <div class="sec-hdr"><div class="sec-title">Par magasin</div></div>
@@ -327,14 +291,14 @@
       <div class="header-month">Parametres</div>
     </div>
     <div class="set-card">
-      <label class="set-lbl">Budget hebdomadaire (par vendredi)</label>
+      <label class="set-lbl">Budget par vendredi (semaine)</label>
       <div class="set-row">
         <div class="bud-w"><span class="eur">&#8364;</span><input type="number" class="bud-inp" id="bud-set" placeholder="165" min="1"></div>
         <button class="save-btn" onclick="saveBudget()">Enregistrer</button>
       </div>
     </div>
     <div class="set-card">
-      <label class="set-lbl">Seuil d'alerte</label>
+      <label class="set-lbl">Seuil d'alerte mensuel</label>
       <div class="sel-wrap">
         <select id="thresh-set">
           <option value="70" selected>70% du budget</option>
@@ -351,22 +315,13 @@
     </div>
     <div class="spacer"></div>
   </div>
-
 </div>
 
 <nav class="nav">
-  <button class="nav-btn active" onclick="showPage('home',this)">
-    <span class="nav-icon">&#128722;</span><span class="nav-lbl">Courses</span>
-  </button>
-  <button class="nav-btn" onclick="showPage('weeks',this)">
-    <span class="nav-icon">&#128197;</span><span class="nav-lbl">Semaines</span>
-  </button>
-  <button class="nav-btn" onclick="showPage('stats',this)">
-    <span class="nav-icon">&#128202;</span><span class="nav-lbl">Stats</span>
-  </button>
-  <button class="nav-btn" onclick="showPage('settings',this)">
-    <span class="nav-icon">&#9881;</span><span class="nav-lbl">Reglages</span>
-  </button>
+  <button class="nav-btn active" onclick="showPage('home',this)"><span class="nav-icon">&#128722;</span><span class="nav-lbl">Courses</span></button>
+  <button class="nav-btn" onclick="showPage('weeks',this)"><span class="nav-icon">&#128197;</span><span class="nav-lbl">Semaines</span></button>
+  <button class="nav-btn" onclick="showPage('stats',this)"><span class="nav-icon">&#128202;</span><span class="nav-lbl">Stats</span></button>
+  <button class="nav-btn" onclick="showPage('settings',this)"><span class="nav-icon">&#9881;</span><span class="nav-lbl">Reglages</span></button>
 </nav>
 
 <div class="modal-overlay hidden" id="modal-overlay">
@@ -385,7 +340,6 @@
 <script>
 var ICONS={'Carrefour':'\u{1F6D2}','Picard':'\u2744','Auchan':'\u{1F7E0}','Biocoop':'\u{1F33F}','Autre':'\u{1F3EA}'};
 var MONTHS=['Janvier','Fevrier','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Decembre'];
-var DAYS=['dim','lun','mar','mer','jeu','ven','sam'];
 var state={weeklyBudget:165,threshold:70,purchases:[]};
 var db=null;
 
@@ -396,83 +350,83 @@ try{
 
 function pad(n){return String(n).padStart(2,'0')}
 function todayStr(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
-function getCM(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)}
-function fmtE(n){return(Math.round(n*100)/100).toFixed(2).replace('.',',')+'\u00a0\u20ac'}
+function fmtE(n){var v=Math.round(n*100)/100;return(v<0?'-':'')+Math.abs(v).toFixed(2).replace('.',',')+'\u00a0\u20ac'}
 function fmtDate(s){var p=s.split('-');return p[2]+'/'+p[1]+'/'+p[0]}
-function dateToStr(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+function addDays(dateStr,n){var p=dateStr.split('-').map(Number);var d=new Date(p[0],p[1]-1,p[2]);d.setDate(d.getDate()+n);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
 
-// Get all Fridays in a month
-function getFridaysInMonth(year,month){
-  var fridays=[],days=new Date(year,month+1,0).getDate();
-  for(var d=1;d<=days;d++){if(new Date(year,month,d).getDay()===5)fridays.push(new Date(year,month,d));}
+// Get the Friday that starts the week for a given date
+// Week = Fri -> Thu. Friday IS the start.
+function getWeekFriday(dateStr){
+  var p=dateStr.split('-').map(Number);
+  var d=new Date(p[0],p[1]-1,p[2]);
+  var dow=d.getDay(); // 0=Sun,1=Mon,...,5=Fri,6=Sat
+  // Days to subtract to reach the previous (or current) Friday
+  // Fri(5)=0, Sat(6)=1, Sun(0)=2, Mon(1)=3, Tue(2)=4, Wed(3)=5, Thu(4)=6
+  var back=(dow===5)?0:(dow+2)%7;
+  var fri=new Date(d);fri.setDate(d.getDate()-back);
+  return fri.getFullYear()+'-'+pad(fri.getMonth()+1)+'-'+pad(fri.getDate());
+}
+
+// The budget month of a date = month of the THURSDAY ending its week
+// Thu = Friday + 6 days
+function getBudgetMonth(dateStr){
+  var fri=getWeekFriday(dateStr);
+  var thu=addDays(fri,6);
+  return thu.substring(0,7); // YYYY-MM
+}
+
+function getCurrentBudgetMonth(){return getBudgetMonth(todayStr())}
+
+// Get all Fridays belonging to a given budget month (identified by their week's Thursday)
+function getFridaysForMonth(yearMonth){
+  var p=yearMonth.split('-').map(Number),yr=p[0],mo=p[1];
+  var fridays=[];
+  // Scan from 7 days before month start to 7 days after month end
+  var start=new Date(yr,mo-1,1);start.setDate(start.getDate()-7);
+  var end=new Date(yr,mo,0);end.setDate(end.getDate()+7);
+  for(var d=new Date(start);d<=end;d.setDate(d.getDate()+1)){
+    if(d.getDay()===5){
+      var friStr=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+      if(getBudgetMonth(friStr)===yearMonth) fridays.push(friStr);
+    }
+  }
   return fridays;
 }
 
-// Get week boundaries: each week starts Friday and ends Thursday
-// Week 1: from friday[0] to friday[1]-1 day
-// etc.
-function getWeekBoundaries(year,month){
-  var fridays=getFridaysInMonth(year,month);
-  return fridays.map(function(fri,i){
-    var start=new Date(fri);
-    var end;
-    if(i<fridays.length-1){
-      end=new Date(fridays[i+1]);
-      end.setDate(end.getDate()-1);
-    } else {
-      // Last week of month: end on last day of month
-      end=new Date(year,month+1,0);
-    }
-    return {start:start,end:end,friday:fri};
-  });
+// Purchases belonging to current budget month
+function cmPurchases(){
+  var cm=getCurrentBudgetMonth();
+  return state.purchases.filter(function(p){return getBudgetMonth(p.date)===cm});
 }
 
-// Get purchases for a date range
-function getPurchasesInRange(startStr,endStr){
-  return state.purchases.filter(function(p){return p.date>=startStr&&p.date<=endStr});
-}
-
-function cmPurchases(){var cm=getCM();return state.purchases.filter(function(p){return p.date.substring(0,7)===cm})}
-function totalSpent(){return cmPurchases().reduce(function(s,p){return s+p.amount},0)}
-
-// Compute weekly data with carry-over
-function computeWeeks(){
-  var cm=getCM(),parts=cm.split('-').map(Number),yr=parts[0],mo=parts[1]-1;
-  var boundaries=getWeekBoundaries(yr,mo);
-  var carry=0;
+// Compute all weeks for a budget month with carry-over
+function computeWeeks(yearMonth){
+  var fridays=getFridaysForMonth(yearMonth);
   var today=todayStr();
-  return boundaries.map(function(w,i){
-    var startStr=dateToStr(w.start),endStr=dateToStr(w.end);
-    var spent=getPurchasesInRange(startStr,endStr).reduce(function(s,p){return s+p.amount},0);
+  var carry=0;
+  return fridays.map(function(friStr,i){
+    var endStr=addDays(friStr,6); // Thursday
+    var purchases=state.purchases.filter(function(p){
+      var pf=getWeekFriday(p.date);return pf===friStr;
+    });
+    var spent=purchases.reduce(function(s,p){return s+p.amount},0);
     var available=state.weeklyBudget+carry;
     var balance=available-spent;
-    var isCurrent=today>=startStr&&today<=endStr;
+    var isCurrent=today>=friStr&&today<=endStr;
     var isPast=today>endStr;
-    var result={
-      index:i+1,
-      start:startStr,end:endStr,
-      friday:dateToStr(w.friday),
-      spent:spent,
-      carryIn:carry,
-      available:available,
-      balance:balance,
-      isCurrent:isCurrent,
-      isPast:isPast
-    };
-    // Only carry over if past
-    if(isPast||isCurrent) carry=balance;
-    else carry=balance; // future weeks show projected carry
-    return result;
+    var thisCarry=carry;
+    carry=balance; // carry over to next week regardless (past or current)
+    return{index:i+1,start:friStr,end:endStr,spent:spent,carryIn:thisCarry,available:available,balance:balance,isCurrent:isCurrent,isPast:isPast,purchases:purchases};
   });
 }
 
-function getCurrentWeek(){
-  var weeks=computeWeeks();
+function getCurrentWeekData(){
+  var cm=getCurrentBudgetMonth();
+  var weeks=computeWeeks(cm);
   var today=todayStr();
-  for(var i=0;i<weeks.length;i++){if(today>=weeks[i].start&&today<=weeks[i].end)return weeks[i];}
-  // If before first friday, return first week
+  for(var i=0;i<weeks.length;i++){if(weeks[i].isCurrent)return weeks[i];}
   if(weeks.length>0&&today<weeks[0].start)return weeks[0];
-  return weeks[weeks.length-1];
+  return weeks[weeks.length-1]||{index:1,start:todayStr(),end:todayStr(),spent:0,carryIn:0,available:state.weeklyBudget,balance:state.weeklyBudget,isCurrent:true,isPast:false};
 }
 
 function setLoading(on){document.getElementById('lbar').classList.toggle('hidden',!on)}
@@ -485,101 +439,93 @@ function initFirebase(){
     setLoading(false);
     document.getElementById('sync-lbl').textContent='Synchronise';
     var data=snap.val();
-    if(data){
-      state.weeklyBudget=data.weeklyBudget||165;
-      state.threshold=data.threshold||70;
-      state.purchases=data.purchases?Object.values(data.purchases):[];
-    }
+    if(data){state.weeklyBudget=data.weeklyBudget||165;state.threshold=data.threshold||70;state.purchases=data.purchases?Object.values(data.purchases):[];}
     updateUI();
-  },function(){
-    setLoading(false);
-    document.getElementById('sync-lbl').textContent='Hors ligne';
-    loadLocal();
-  });
+  },function(){setLoading(false);document.getElementById('sync-lbl').textContent='Hors ligne';loadLocal();});
 }
 
 function saveData(){
   if(!db){saveLocal();return}
   setLoading(true);
-  var obj={};
-  state.purchases.forEach(function(p){obj[p.id]=p});
+  var obj={};state.purchases.forEach(function(p){obj[p.id]=p});
   db.ref('budget_app').set({weeklyBudget:state.weeklyBudget,threshold:state.threshold,purchases:obj})
-    .then(function(){setLoading(false)})
-    .catch(function(){setLoading(false);saveLocal()});
+    .then(function(){setLoading(false)}).catch(function(){setLoading(false);saveLocal()});
 }
 function loadLocal(){
-  try{var s=localStorage.getItem('budgetv6');if(s){var d=JSON.parse(s);state.weeklyBudget=d.weeklyBudget||165;state.threshold=d.threshold||70;state.purchases=d.purchases||[];}}catch(e){}
+  try{var s=localStorage.getItem('budgetv7');if(s){var d=JSON.parse(s);state.weeklyBudget=d.weeklyBudget||165;state.threshold=d.threshold||70;state.purchases=d.purchases||[];}}catch(e){}
   updateUI();
 }
-function saveLocal(){try{localStorage.setItem('budgetv6',JSON.stringify(state))}catch(e){}}
+function saveLocal(){try{localStorage.setItem('budgetv7',JSON.stringify(state))}catch(e){}}
 
 function updateUI(){
-  var cm=getCM(),parts=cm.split('-').map(Number),yr=parts[0],mo=parts[1];
-  var fridays=getFridaysInMonth(yr,mo-1);
+  var cm=getCurrentBudgetMonth();
+  var p=cm.split('-').map(Number),yr=p[0],mo=p[1];
+  var fridays=getFridaysForMonth(cm);
   var nbWeeks=fridays.length;
   var monthlyBudget=state.weeklyBudget*nbWeeks;
-  var spent=totalSpent(),left=monthlyBudget-spent,pct=Math.min(spent/monthlyBudget*100,100);
-  var cw=getCurrentWeek();
-  var weeks=computeWeeks();
+  var monthSpent=cmPurchases().reduce(function(s,x){return s+x.amount},0);
+  var monthLeft=monthlyBudget-monthSpent;
+  var monthPct=Math.min(monthSpent/monthlyBudget*100,100);
+  var cw=getCurrentWeekData();
 
-  // Header
+  // Header - show the budget month name
   document.getElementById('hdr-month').textContent=MONTHS[mo-1]+' '+yr;
   document.getElementById('hdr-sub').textContent=nbWeeks+' vendredis \u00b7 Budget mensuel '+fmtE(monthlyBudget);
 
   // Week hero
-  var heroBg=cw.balance<0?'var(--red-light)':cw.balance<state.weeklyBudget*0.3?'var(--orange-light)':'var(--green-light)';
-  var heroColor=cw.balance<0?'var(--red)':cw.balance<state.weeklyBudget*0.3?'var(--orange)':'var(--green)';
+  var heroBg=cw.balance<0?'var(--red-light)':cw.balance<state.weeklyBudget*0.25?'var(--orange-light)':'var(--green-light)';
+  var heroTextColor=cw.balance<0?'var(--red)':'var(--text)';
+  var heroAccent=cw.balance<0?'var(--red)':cw.balance<state.weeklyBudget*0.25?'var(--orange)':'var(--green)';
   document.getElementById('week-hero').style.background=heroBg;
+  document.getElementById('week-hero-label').style.color=heroAccent;
   document.getElementById('week-available').textContent=fmtE(Math.abs(cw.balance));
-  document.getElementById('week-available').style.color=cw.balance<0?'var(--red)':'var(--text)';
+  document.getElementById('week-available').style.color=heroTextColor;
   document.getElementById('week-available-lbl').textContent=cw.balance>=0?'disponibles cette semaine':'de depassement cette semaine';
-  document.getElementById('week-dates').textContent='Vendredi '+cw.start.split('-')[2]+' \u2192 '+cw.end.split('-')[2]+'/'+cw.end.split('-')[1];
-  document.getElementById('ws-budget').textContent=fmtE(state.weeklyBudget);
-  document.getElementById('ws-spent').textContent=fmtE(cw.spent);
-  document.getElementById('ws-carry').textContent=(cw.carryIn>=0?'+':'')+fmtE(cw.carryIn);
-  document.getElementById('ws-carry').style.color=cw.carryIn>0?'var(--green)':cw.carryIn<0?'var(--red)':'var(--muted)';
+  // Format dates: ven 27/02 → jeu 05/03
+  var sd=cw.start.split('-'),ed=cw.end.split('-');
+  document.getElementById('week-dates').textContent='Ven '+sd[2]+'/'+sd[1]+' \u2192 Jeu '+ed[2]+'/'+ed[1];
 
-  // Ring
-  var weekPct=Math.min(cw.spent/cw.available*100,100);
-  if(cw.available<=0)weekPct=100;
-  var circ=213.6,offset=circ-(weekPct/100)*circ;
-  document.getElementById('ring-fill').style.strokeDashoffset=offset;
-  document.getElementById('ring-fill').style.stroke=cw.balance<0?'#d94f3d':cw.balance<state.weeklyBudget*0.3?'#e07d2a':'#5a9e3a';
+  var weekPct=cw.available>0?Math.min(cw.spent/cw.available*100,100):100;
+  var ringColor=cw.balance<0?'#d94f3d':cw.balance<state.weeklyBudget*0.25?'#e07d2a':'#5a9e3a';
+  document.getElementById('ring-fill').style.strokeDashoffset=213.6-(weekPct/100)*213.6;
+  document.getElementById('ring-fill').style.stroke=ringColor;
   document.getElementById('ring-pct').textContent=Math.round(weekPct)+'%';
+  document.getElementById('ws-budget').textContent=fmtE(cw.available);
+  document.getElementById('ws-spent').textContent=fmtE(cw.spent);
+  var carryEl=document.getElementById('ws-carry');
+  carryEl.textContent=(cw.carryIn>0?'+':'')+fmtE(cw.carryIn);
+  carryEl.style.color=cw.carryIn>0?'var(--green)':cw.carryIn<0?'var(--red)':'var(--muted)';
 
   // Carry banner
   var cb=document.getElementById('carry-banner');
-  var cmsg=document.getElementById('carry-msg');
-  var csub=document.getElementById('carry-sub');
-  var ci=document.querySelector('#carry-banner .carry-icon');
   if(cw.carryIn>0){
     cb.className='carry-banner carry-pos';
-    ci.textContent='\u{1F4B0}';
-    cmsg.textContent='Report positif de '+fmtE(cw.carryIn)+' cette semaine';
-    csub.textContent='Tu as economise la semaine precedente !';
+    document.getElementById('carry-icon').textContent='\u{1F4B0}';
+    document.getElementById('carry-msg').textContent='Report positif de +'+fmtE(cw.carryIn)+' cette semaine';
+    document.getElementById('carry-sub').textContent='Tu as economise la semaine precedente \u2014 budget total '+fmtE(cw.available);
   } else if(cw.carryIn<0){
     cb.className='carry-banner carry-neg';
-    ci.textContent='\u26A0\uFE0F';
-    cmsg.textContent='Report negatif de '+fmtE(Math.abs(cw.carryIn))+' cette semaine';
-    csub.textContent='Tu as depasse la semaine precedente';
+    document.getElementById('carry-icon').textContent='\u26A0\uFE0F';
+    document.getElementById('carry-msg').textContent='Report negatif de '+fmtE(cw.carryIn)+' cette semaine';
+    document.getElementById('carry-sub').textContent='Tu as depasse la semaine precedente \u2014 budget reduit a '+fmtE(cw.available);
   } else {
     cb.className='carry-banner carry-zero';
-    ci.textContent='\u2192';
-    cmsg.textContent='Premiere semaine du mois';
-    csub.textContent='Budget de base : '+fmtE(state.weeklyBudget);
+    document.getElementById('carry-icon').textContent='\u{1F7E2}';
+    document.getElementById('carry-msg').textContent='Premiere semaine du mois \u2014 budget de base';
+    document.getElementById('carry-sub').textContent='165 \u20ac cette semaine, sans report';
   }
 
   // Month card
-  var barColor=pct>=100?'var(--red)':pct>=state.threshold?'var(--orange)':'var(--green)';
+  var barColor=monthPct>=100?'var(--red)':monthPct>=state.threshold?'var(--orange)':'var(--green)';
   document.getElementById('month-budget-lbl').textContent=fmtE(monthlyBudget);
-  document.getElementById('month-pbar').style.width=pct+'%';
+  document.getElementById('month-pbar').style.width=monthPct+'%';
   document.getElementById('month-pbar').style.background=barColor;
-  document.getElementById('month-pct').textContent=Math.round(pct)+'%';
+  document.getElementById('month-pct-lbl').textContent=Math.round(monthPct)+'%';
   document.getElementById('month-max').textContent=fmtE(monthlyBudget);
-  document.getElementById('ms-spent').textContent=fmtE(spent);
+  document.getElementById('ms-spent').textContent=fmtE(monthSpent);
   var le=document.getElementById('ms-left');
-  le.textContent=fmtE(Math.abs(left));
-  le.style.color=left>=0?'var(--green)':'var(--red)';
+  le.textContent=fmtE(Math.abs(monthLeft));
+  le.style.color=monthLeft>=0?'var(--green)':'var(--red)';
   document.getElementById('ms-weeks').textContent=nbWeeks;
 
   renderHistory();
@@ -589,41 +535,77 @@ function updateUI(){
 
 function renderHistory(){
   var list=document.getElementById('hist-list');
-  var items=[...cmPurchases()].reverse();
+  var items=[...cmPurchases()].sort(function(a,b){return b.date.localeCompare(a.date)});
   if(!items.length){list.innerHTML='<div class="empty"><span class="empty-icon">\u{1F6D2}</span>Aucun achat ce mois-ci</div>';return;}
   list.innerHTML=items.map(function(p){
-    return '<div class="h-item"><div class="h-icon">'+(ICONS[p.shop]||'\u{1F6D2}')+'</div><div style="flex:1"><div class="h-shop">'+p.shop+'</div><div class="h-date">'+fmtDate(p.date)+'</div></div><div class="h-amt">\u2212'+fmtE(p.amount)+'</div><button class="del-btn" onclick="deletePurchase(\''+p.id+'\')">&#10005;</button></div>';
+    var fri=getWeekFriday(p.date);var sd=fri.split('-');
+    return '<div class="h-item">'+
+      '<div class="h-icon">'+(ICONS[p.shop]||'\u{1F6D2}')+'</div>'+
+      '<div style="flex:1;min-width:0">'+
+        '<div class="h-shop">'+p.shop+'<span class="h-week-tag">Sem. ven '+sd[2]+'/'+sd[1]+'</span></div>'+
+        '<div class="h-date">'+fmtDate(p.date)+'</div>'+
+      '</div>'+
+      '<div class="h-amt">\u2212'+fmtE(p.amount)+'</div>'+
+      '<button class="del-btn" onclick="deletePurchase(\''+p.id+'\')">&#10005;</button>'+
+    '</div>';
   }).join('');
 }
 
 function renderWeeks(){
-  var cm=getCM(),parts=cm.split('-').map(Number),yr=parts[0],mo=parts[1];
-  document.getElementById('weeks-month').textContent=MONTHS[mo-1]+' '+yr;
-  var weeks=computeWeeks();
+  var cm=getCurrentBudgetMonth();
+  var p=cm.split('-').map(Number);
+  document.getElementById('weeks-month').textContent=MONTHS[p[1]-1]+' '+p[0];
+  var weeks=computeWeeks(cm);
   var today=todayStr();
   document.getElementById('week-timeline').innerHTML=weeks.map(function(w){
     var pct=w.available>0?Math.min(w.spent/w.available*100,100):100;
-    var barColor=w.balance<0?'#d94f3d':w.balance<w.available*0.3?'#e07d2a':'#5a9e3a';
+    var barColor=w.balance<0?'#d94f3d':w.balance<w.available*0.25?'#e07d2a':'#5a9e3a';
     var balColor=w.balance>=0?'var(--green)':'var(--red)';
     var balSign=w.balance>=0?'+':'';
-    var isFuture=today<w.start&&!w.isCurrent;
+    var isFuture=!w.isCurrent&&!w.isPast;
+    var sd=w.start.split('-'),ed=w.end.split('-');
+    var carryStr=w.carryIn!==0?' (report '+(w.carryIn>0?'+':'')+fmtE(w.carryIn)+')':'';
     return '<div class="wt-item'+(w.isCurrent?' current':'')+'">'+
       '<div class="wt-top">'+
-        '<div class="wt-label">Semaine '+w.index+' \u2014 Vendredi '+w.friday.split('-')[2]+'/'+w.friday.split('-')[1]+'</div>'+
-        (w.isCurrent?'<div class="wt-current-badge">En cours</div>':'')+
-        (isFuture?'<div style="font-size:10px;color:var(--muted);font-weight:600">A venir</div>':'')+
+        '<div class="wt-label">Semaine '+w.index+'</div>'+
+        (w.isCurrent?'<span class="wt-badge cur">En cours</span>':'')+
+        (isFuture?'<span class="wt-badge fut">A venir</span>':'')+
       '</div>'+
-      '<div class="wt-amounts">'+
-        '<span>Budget: '+fmtE(w.available)+(w.carryIn!==0?' ('+( w.carryIn>0?'+':'')+fmtE(w.carryIn)+' report)':'')+'</span>'+
+      '<div class="wt-dates">Ven '+sd[2]+'/'+sd[1]+' \u2192 Jeu '+ed[2]+'/'+ed[1]+'</div>'+
+      '<div class="wt-budget-row">'+
+        '<span>Budget : '+fmtE(w.available)+carryStr+'</span>'+
         '<span>'+Math.round(pct)+'%</span>'+
       '</div>'+
       '<div class="wt-bar-bg"><div class="wt-bar-fill" style="width:'+pct+'%;background:'+barColor+'"></div></div>'+
       '<div class="wt-bottom">'+
-        '<div class="wt-spent">Depense: '+fmtE(w.spent)+'</div>'+
+        '<div class="wt-spent" style="color:var(--muted)">Depense : '+fmtE(w.spent)+'</div>'+
         '<div class="wt-balance" style="color:'+balColor+'">'+balSign+fmtE(w.balance)+'</div>'+
       '</div>'+
     '</div>';
   }).join('');
+}
+
+function renderStats(){
+  var cm=getCurrentBudgetMonth();
+  var p=cm.split('-').map(Number);
+  var items=cmPurchases();
+  var spent=items.reduce(function(s,x){return s+x.amount},0);
+  var fridays=getFridaysForMonth(cm);
+  var monthlyBudget=state.weeklyBudget*fridays.length;
+  var left=monthlyBudget-spent,avg=items.length?spent/items.length:0;
+  document.getElementById('stats-month').textContent=MONTHS[p[1]-1]+' '+p[0];
+  document.getElementById('stats-grid').innerHTML=[
+    {v:fmtE(spent),l:'Total depense',c:'var(--red)'},
+    {v:fmtE(Math.abs(left)),l:left>=0?'Restant':'Depassement',c:left>=0?'var(--green)':'var(--red)'},
+    {v:items.length,l:'Courses',c:'var(--blue)'},
+    {v:fmtE(avg),l:'Panier moyen',c:'var(--orange)'}
+  ].map(function(s){return'<div class="stat-lg"><div class="stat-lg-val" style="color:'+s.c+'">'+s.v+'</div><div class="stat-lg-lbl">'+s.l+'</div></div>'}).join('');
+  var by={};items.forEach(function(x){if(!by[x.shop])by[x.shop]=0;by[x.shop]+=x.amount});
+  var sorted=Object.entries(by).sort(function(a,b){return b[1]-a[1]});
+  var maxV=sorted.length?sorted[0][1]:1;
+  document.getElementById('shop-bkd').innerHTML=sorted.length?sorted.map(function(e){
+    return'<div class="shop-row"><div class="shop-row-l"><div class="shop-ico">'+(ICONS[e[0]]||'\u{1F6D2}')+'</div>'+e[0]+'</div><div class="shop-bar-w"><div class="shop-bar-f" style="width:'+Math.round(e[1]/maxV*100)+'%"></div></div><div class="shop-val">'+fmtE(e[1])+'</div></div>';
+  }).join(''):'<div style="color:var(--muted);text-align:center;font-size:13px;padding:16px">Aucune donnee</div>';
 }
 
 function addPurchase(){
@@ -648,7 +630,9 @@ function deletePurchase(id){
 }
 function clearMonth(){
   showModal('Tout effacer ?','Tous les achats du mois seront supprimes.','Tout effacer',function(){
-    var cm=getCM();state.purchases=state.purchases.filter(function(p){return p.date.substring(0,7)!==cm});saveData();
+    var cm=getCurrentBudgetMonth();
+    state.purchases=state.purchases.filter(function(p){return getBudgetMonth(p.date)!==cm});
+    saveData();
   });
 }
 function saveBudget(){
@@ -670,28 +654,6 @@ function showPage(name,btn){
   btn.classList.add('active');
   if(name==='weeks')renderWeeks();
   if(name==='stats')renderStats();
-}
-
-function renderStats(){
-  var items=cmPurchases(),spent=items.reduce(function(s,p){return s+p.amount},0);
-  var cm=getCM(),parts=cm.split('-').map(Number),yr=parts[0],mo=parts[1];
-  var nbWeeks=getFridaysInMonth(yr,mo-1).length;
-  var monthlyBudget=state.weeklyBudget*nbWeeks;
-  var left=monthlyBudget-spent,avg=items.length?spent/items.length:0;
-  document.getElementById('stats-month').textContent=MONTHS[mo-1];
-  document.getElementById('stats-grid').innerHTML=[
-    {v:fmtE(spent),l:'Total depense',c:'var(--red)'},
-    {v:fmtE(Math.abs(left)),l:left>=0?'Restant':'Depassement',c:left>=0?'var(--green)':'var(--red)'},
-    {v:items.length,l:'Courses',c:'var(--blue)'},
-    {v:fmtE(avg),l:'Panier moyen',c:'var(--orange)'}
-  ].map(function(s){return'<div class="stat-lg"><div class="stat-lg-val" style="color:'+s.c+'">'+s.v+'</div><div class="stat-lg-lbl">'+s.l+'</div></div>'}).join('');
-  var by={};
-  items.forEach(function(p){if(!by[p.shop])by[p.shop]=0;by[p.shop]+=p.amount});
-  var sorted=Object.entries(by).sort(function(a,b){return b[1]-a[1]});
-  var maxVal=sorted.length?sorted[0][1]:1;
-  document.getElementById('shop-bkd').innerHTML=sorted.length?sorted.map(function(e){
-    return'<div class="shop-row"><div class="shop-row-l"><div class="shop-ico">'+(ICONS[e[0]]||'\u{1F6D2}')+'</div>'+e[0]+'</div><div class="shop-bar-w"><div class="shop-bar-f" style="width:'+Math.round(e[1]/maxVal*100)+'%"></div></div><div class="shop-val">'+fmtE(e[1])+'</div></div>';
-  }).join(''):'<div style="color:var(--muted);text-align:center;font-size:13px;padding:16px">Aucune donnee</div>';
 }
 
 document.getElementById('date-input').value=todayStr();
