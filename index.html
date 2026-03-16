@@ -356,11 +356,15 @@ function addDays(dateStr,n){var p=dateStr.split('-').map(Number);var d=new Date(
 
 // Get the Friday that starts the week for a given date
 // Week = Fri -> Thu. Friday IS the start.
-function getWeekFriday(dateStr){
+function parseDate(dateStr){
+  // Always parse as local date (avoid UTC timezone shift)
   var p=dateStr.split('-').map(Number);
-  var d=new Date(p[0],p[1]-1,p[2]);
+  return new Date(p[0],p[1]-1,p[2]);
+}
+function getWeekFriday(dateStr){
+  var d=parseDate(dateStr);
   var dow=d.getDay(); // 0=Sun,1=Mon,...,5=Fri,6=Sat
-  // Days to subtract to reach the previous (or current) Friday
+  // Days to subtract to reach the current or previous Friday
   // Fri(5)=0, Sat(6)=1, Sun(0)=2, Mon(1)=3, Tue(2)=4, Wed(3)=5, Thu(4)=6
   var back=(dow===5)?0:(dow+2)%7;
   var fri=new Date(d);fri.setDate(d.getDate()-back);
