@@ -182,7 +182,7 @@
       <div class="week-stats">
         <div class="week-stat">
           <div class="week-stat-val" id="ws-budget" style="color:var(--text)">--</div>
-          <div class="week-stat-lbl" style="color:var(--muted)">Disponible</div>
+          <div class="week-stat-lbl" style="color:var(--muted)">Budget sem.</div>
         </div>
         <div class="week-stat">
           <div class="week-stat-val" id="ws-spent" style="color:var(--red)">--</div>
@@ -190,7 +190,7 @@
         </div>
         <div class="week-stat">
           <div class="week-stat-val" id="ws-carry" style="color:var(--muted)">--</div>
-          <div class="week-stat-lbl" style="color:var(--muted)">Report</div>
+          <div class="week-stat-lbl" style="color:var(--muted)">Solde</div>
         </div>
       </div>
     </div>
@@ -495,11 +495,11 @@ function updateUI(){
   document.getElementById('ring-fill').style.strokeDashoffset=213.6-(weekPct/100)*213.6;
   document.getElementById('ring-fill').style.stroke=ringColor;
   document.getElementById('ring-pct').textContent=Math.round(weekPct)+'%';
-  document.getElementById('ws-budget').textContent=fmtE(cw.available);
+  document.getElementById('ws-budget').textContent=fmtE(state.weeklyBudget);
   document.getElementById('ws-spent').textContent=fmtE(cw.spent);
   var carryEl=document.getElementById('ws-carry');
-  carryEl.textContent=(cw.carryIn>0?'+':'')+fmtE(cw.carryIn);
-  carryEl.style.color=cw.carryIn>0?'var(--green)':cw.carryIn<0?'var(--red)':'var(--muted)';
+  carryEl.textContent=(weeklyBalance>=0?'+':'')+fmtE(weeklyBalance);
+  carryEl.style.color=weeklyBalance>0?'var(--green)':weeklyBalance<0?'var(--red)':'var(--muted)';
 
   // Carry banner
   var cb=document.getElementById('carry-banner');
