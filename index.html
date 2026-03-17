@@ -476,21 +476,22 @@ function updateUI(){
   document.getElementById('hdr-month').textContent=MONTHS[mo-1]+' '+yr;
   document.getElementById('hdr-sub').textContent=nbWeeks+' vendredis \u00b7 Budget mensuel '+fmtE(monthlyBudget);
 
-  // Week hero
-  var heroBg=cw.balance<0?'var(--red-light)':cw.balance<state.weeklyBudget*0.25?'var(--orange-light)':'var(--green-light)';
-  var heroTextColor=cw.balance<0?'var(--red)':'var(--text)';
-  var heroAccent=cw.balance<0?'var(--red)':cw.balance<state.weeklyBudget*0.25?'var(--orange)':'var(--green)';
+  // Week hero - affiche 165€ - depense cette semaine (sans report)
+  var weeklyBalance=state.weeklyBudget-cw.spent;
+  var heroBg=weeklyBalance<0?'var(--red-light)':weeklyBalance<state.weeklyBudget*0.25?'var(--orange-light)':'var(--green-light)';
+  var heroTextColor=weeklyBalance>=0?'var(--text)':'var(--red)';
+  var heroAccent=weeklyBalance<0?'var(--red)':weeklyBalance<state.weeklyBudget*0.25?'var(--orange)':'var(--green)';
   document.getElementById('week-hero').style.background=heroBg;
   document.getElementById('week-hero-label').style.color=heroAccent;
-  document.getElementById('week-available').textContent=fmtE(Math.abs(cw.balance));
+  document.getElementById('week-available').textContent=fmtE(weeklyBalance);
   document.getElementById('week-available').style.color=heroTextColor;
-  document.getElementById('week-available-lbl').textContent=cw.balance>=0?'disponibles cette semaine':'de depassement cette semaine';
+  document.getElementById('week-available-lbl').textContent=weeklyBalance>=0?'restants sur 165\u00a0\u20ac cette semaine':'de d\u00e9passement sur 165\u00a0\u20ac cette semaine';
   // Format dates: ven 27/02 → jeu 05/03
   var sd=cw.start.split('-'),ed=cw.end.split('-');
   document.getElementById('week-dates').textContent='Ven '+sd[2]+'/'+sd[1]+' \u2192 Jeu '+ed[2]+'/'+ed[1];
 
-  var weekPct=cw.available>0?Math.min(cw.spent/cw.available*100,100):100;
-  var ringColor=cw.balance<0?'#d94f3d':cw.balance<state.weeklyBudget*0.25?'#e07d2a':'#5a9e3a';
+  var weekPct=Math.min(cw.spent/state.weeklyBudget*100,100);
+  var ringColor=weeklyBalance<0?'#d94f3d':weeklyBalance<state.weeklyBudget*0.25?'#e07d2a':'#5a9e3a';
   document.getElementById('ring-fill').style.strokeDashoffset=213.6-(weekPct/100)*213.6;
   document.getElementById('ring-fill').style.stroke=ringColor;
   document.getElementById('ring-pct').textContent=Math.round(weekPct)+'%';
