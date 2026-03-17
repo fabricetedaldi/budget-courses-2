@@ -503,21 +503,30 @@ function updateUI(){
 
   // Carry banner
   var cb=document.getElementById('carry-banner');
-  if(cw.carryIn>0){
-    cb.className='carry-banner carry-pos';
-    document.getElementById('carry-icon').textContent='\u{1F4B0}';
-    document.getElementById('carry-msg').textContent='Report positif de +'+fmtE(cw.carryIn)+' cette semaine';
-    document.getElementById('carry-sub').textContent='Tu as economise la semaine precedente \u2014 budget total '+fmtE(cw.available);
-  } else if(cw.carryIn<0){
+  if(weeklyBalance<0){
+    // Depasse cette semaine : stop depenses
+    cb.className='carry-banner carry-neg';
+    document.getElementById('carry-icon').textContent='\u{1F6AB}';
+    document.getElementById('carry-msg').textContent='Budget semaine depasse — pas de depenses !';
+    document.getElementById('carry-sub').textContent='Tu as depense '+fmtE(cw.spent)+' sur 165\u00a0\u20ac cette semaine';
+  } else if(weeklyBalance<state.weeklyBudget*0.25){
+    // Moins de 25% restant
     cb.className='carry-banner carry-neg';
     document.getElementById('carry-icon').textContent='\u26A0\uFE0F';
-    document.getElementById('carry-msg').textContent='Report negatif de '+fmtE(cw.carryIn)+' cette semaine';
-    document.getElementById('carry-sub').textContent='Tu as depasse la semaine precedente \u2014 budget reduit a '+fmtE(cw.available);
-  } else {
+    document.getElementById('carry-msg').textContent='Attention — plus que '+fmtE(weeklyBalance)+' cette semaine';
+    document.getElementById('carry-sub').textContent='Evite les depenses supplementaires pour garder du budget vendredi';
+  } else if(weeklyBalance===state.weeklyBudget){
+    // Rien depense cette semaine
     cb.className='carry-banner carry-zero';
     document.getElementById('carry-icon').textContent='\u{1F7E2}';
-    document.getElementById('carry-msg').textContent='Premiere semaine du mois \u2014 budget de base';
-    document.getElementById('carry-sub').textContent='165 \u20ac cette semaine, sans report';
+    document.getElementById('carry-msg').textContent='Aucune depense cette semaine';
+    document.getElementById('carry-sub').textContent='165\u00a0\u20ac disponibles pour vos courses';
+  } else {
+    // En cours, budget OK
+    cb.className='carry-banner carry-pos';
+    document.getElementById('carry-icon').textContent='\u2705';
+    document.getElementById('carry-msg').textContent='Budget OK — '+fmtE(weeklyBalance)+' restants cette semaine';
+    document.getElementById('carry-sub').textContent='Tu as depense '+fmtE(cw.spent)+' sur 165\u00a0\u20ac cette semaine';
   }
 
   // Month card
